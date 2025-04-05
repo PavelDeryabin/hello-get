@@ -1,19 +1,39 @@
 ---
-title: "hello"
+title: "Hello"
 output: html_document
-date: "2025-04-05"
 ---
 
 ```{r setup, include=FALSE}
+library(readr)
+library(dplyr)
+
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r cars}
+```{r}
+top <- read_csv("imdb.csv")
+head(top)
+```
+
+```{r}
+modern <- top |>
+  filter(year >= 2000)
+head(modern)
+```
+
+```{r}
 set.seed(111)
 xs <- sample(1:250, 25)
 xs
 ```
 
 ```{r}
-median(xs)
+me <- median(xs)
+```
+
+Median is `r me`.
+
+```{r}
+modern[xs,] |>
+  gt::gt()
 ```
